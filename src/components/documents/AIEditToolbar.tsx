@@ -105,10 +105,10 @@ export function AIEditToolbar({ sectionContent, onUpdate, onUndo, canUndo }: AIE
         <Button
           size="sm"
           variant="outline"
-          className="h-7 text-xs ml-auto"
+          className="h-7 text-xs ml-auto border-primary/30 text-primary hover:bg-primary/5"
           onClick={onUndo}
         >
-          Undo
+          Undo AI Change
         </Button>
       )}
     </div>

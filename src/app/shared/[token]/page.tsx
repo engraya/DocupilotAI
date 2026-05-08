@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { createServiceClient } from '@/lib/supabase/server';
 import { Badge } from '@/components/ui/badge';
+import { Logo } from '@/components/ui/logo';
 import { DOCUMENT_TYPE_LABELS } from '@/types/document.types';
 import type { DocumentSection, DocumentMeta } from '@/types/document.types';
 import { formatDate } from '@/lib/utils';
@@ -43,8 +44,7 @@ export default async function SharedDocumentPage({ params }: Props) {
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b px-6 py-4 flex items-center gap-3">
-        <span className="text-lg">✈️</span>
-        <span className="font-bold">DocuPilot AI</span>
+        <Logo />
         <Badge variant="outline" className="ml-auto text-xs">Read-only</Badge>
       </header>
 

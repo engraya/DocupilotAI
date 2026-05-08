@@ -47,22 +47,29 @@ export function DocumentEditor({ document }: { document: DocumentMeta }) {
   return (
     <div className="flex flex-col h-full">
       {/* Toolbar */}
-      <div className="border-b px-6 py-3 flex items-center gap-3">
+      <div className="border-b bg-background/95 backdrop-blur-sm px-5 py-3.5 flex items-center gap-4 sticky top-0 z-10">
         <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 flex-wrap">
-            <h1 className="font-semibold text-base truncate">{document.title}</h1>
-            <Badge variant="outline" className="text-xs shrink-0">
+          <div className="flex items-center gap-2.5 flex-wrap">
+            <h1 className="font-semibold text-sm truncate">{document.title}</h1>
+            <Badge variant="outline" className="text-xs shrink-0 bg-muted/60">
               {DOCUMENT_TYPE_LABELS[document.type]}
             </Badge>
-            <span className="text-xs text-muted-foreground shrink-0">
+            <span className="text-xs text-muted-foreground shrink-0 hidden sm:inline">
               {formatDate(document.created_at)}
             </span>
           </div>
         </div>
+
         <div className="flex items-center gap-2 shrink-0">
-          {saving && <span className="text-xs text-muted-foreground">Saving…</span>}
+          {saving && (
+            <div className="flex items-center gap-1.5 shrink-0">
+              <div className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+              <span className="text-xs text-muted-foreground hidden sm:inline">Saving…</span>
+            </div>
+          )}
           <SaveAsTemplateDialog document={document} />
           <ShareDialog documentId={document.id} />
+          <div className="w-px h-4 bg-border mx-0.5" />
           <ExportMenu
             documentId={document.id}
             sections={sections}

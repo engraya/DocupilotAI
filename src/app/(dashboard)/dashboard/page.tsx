@@ -5,7 +5,7 @@ import { TopNav } from '@/components/dashboard/TopNav';
 import { StatsCards } from '@/components/dashboard/StatsCards';
 import { DocumentCard } from '@/components/dashboard/DocumentCard';
 import { Button } from '@/components/ui/button';
-import { PlusCircle } from 'lucide-react';
+import { PlusCircle, FileText, ChevronRight } from 'lucide-react';
 
 export default async function DashboardPage() {
   const supabase = await createClient();
@@ -24,17 +24,23 @@ export default async function DashboardPage() {
 
   return (
     <>
-      <TopNav title="Dashboard" />
+      <TopNav title="Dashboard" profile={profile} />
       <div className="p-6 space-y-8">
         {profile && (
           <StatsCards profile={profile} documentCount={documents?.length ?? 0} />
         )}
 
         <section>
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-base font-semibold">Recent Documents</h2>
+          <div className="flex items-center justify-between mb-5">
+            <div>
+              <h2 className="text-base font-semibold">Recent Documents</h2>
+              <p className="text-xs text-muted-foreground mt-0.5">Your latest work</p>
+            </div>
             <Link href="/documents">
-              <Button variant="ghost" size="sm">View all</Button>
+              <Button variant="ghost" size="sm" className="gap-1 text-primary hover:text-primary/80">
+                View all
+                <ChevronRight className="h-3.5 w-3.5" />
+              </Button>
             </Link>
           </div>
 
@@ -45,11 +51,17 @@ export default async function DashboardPage() {
               ))}
             </div>
           ) : (
-            <div className="flex flex-col items-center justify-center border-2 border-dashed rounded-xl py-16 text-center">
-              <p className="text-muted-foreground mb-4">No documents yet</p>
+            <div className="flex flex-col items-center justify-center border-2 border-dashed border-border/60 rounded-2xl py-20 text-center bg-muted/20">
+              <div className="w-14 h-14 rounded-2xl bg-primary/8 flex items-center justify-center mb-5">
+                <FileText className="h-7 w-7 text-primary/60" />
+              </div>
+              <p className="text-muted-foreground font-medium mb-1">No documents yet</p>
+              <p className="text-sm text-muted-foreground/70 mb-5">
+                Create your first AI-generated document
+              </p>
               <Link href="/documents/new">
-                <Button>
-                  <PlusCircle className="h-4 w-4 mr-2" />
+                <Button className="gap-2">
+                  <PlusCircle className="h-4 w-4" />
                   Create your first document
                 </Button>
               </Link>

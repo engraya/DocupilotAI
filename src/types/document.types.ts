@@ -1,3 +1,16 @@
+import {
+  Receipt,
+  FileSignature,
+  Lock,
+  Briefcase,
+  Tag,
+  Ruler,
+  User,
+  Mail,
+  Building2,
+} from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
+
 export type DocumentType =
   | 'invoice'
   | 'contract'
@@ -81,4 +94,28 @@ export const DOCUMENT_TYPE_ICONS: Record<DocumentType, string> = {
   resume: '👤',
   'cover-letter': '✉️',
   'employment-letter': '🏢',
+};
+
+export const DOCUMENT_TYPE_LUCIDE_ICONS: Record<DocumentType, LucideIcon> = {
+  invoice: Receipt,
+  contract: FileSignature,
+  nda: Lock,
+  proposal: Briefcase,
+  quotation: Tag,
+  scope: Ruler,
+  resume: User,
+  'cover-letter': Mail,
+  'employment-letter': Building2,
+};
+
+export const DOCUMENT_TYPE_COLORS: Record<DocumentType, string> = {
+  invoice: 'bg-emerald-500/10 text-emerald-600',
+  contract: 'bg-blue-500/10 text-blue-600',
+  nda: 'bg-red-500/10 text-red-600',
+  proposal: 'bg-primary/10 text-primary',
+  quotation: 'bg-amber-500/10 text-amber-600',
+  scope: 'bg-violet-500/10 text-violet-600',
+  resume: 'bg-cyan-500/10 text-cyan-600',
+  'cover-letter': 'bg-pink-500/10 text-pink-600',
+  'employment-letter': 'bg-orange-500/10 text-orange-600',
 };

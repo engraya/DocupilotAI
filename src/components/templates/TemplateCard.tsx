@@ -6,12 +6,18 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Loader2 } from 'lucide-react';
-import { DOCUMENT_TYPE_LABELS, DOCUMENT_TYPE_ICONS } from '@/types/document.types';
+import { cn } from '@/lib/utils';
+import {
+  DOCUMENT_TYPE_LABELS,
+  DOCUMENT_TYPE_LUCIDE_ICONS,
+  DOCUMENT_TYPE_COLORS,
+} from '@/types/document.types';
 import type { TemplateMeta } from '@/types/document.types';
 
 export function TemplateCard({ template }: { template: TemplateMeta }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const TypeIcon = DOCUMENT_TYPE_LUCIDE_ICONS[template.type];
 
   const useTemplate = async () => {
     setLoading(true);
@@ -26,13 +32,20 @@ export function TemplateCard({ template }: { template: TemplateMeta }) {
   };
 
   return (
-    <Card className="flex flex-col">
-      <CardHeader className="pb-2">
-        <div className="flex items-start gap-2">
-          <span className="text-2xl">{DOCUMENT_TYPE_ICONS[template.type]}</span>
+    <Card className="flex flex-col hover:shadow-md transition-all">
+      <CardHeader className="pb-3">
+        <div className="flex items-start gap-3">
+          <div
+            className={cn(
+              'w-9 h-9 rounded-lg flex items-center justify-center shrink-0',
+              DOCUMENT_TYPE_COLORS[template.type]
+            )}
+          >
+            <TypeIcon className="h-4 w-4" />
+          </div>
           <div className="flex-1 min-w-0">
             <CardTitle className="text-sm leading-tight">{template.name}</CardTitle>
-            <Badge variant="outline" className="text-xs mt-1">
+            <Badge variant="outline" className="text-xs mt-1.5">
               {DOCUMENT_TYPE_LABELS[template.type]}
             </Badge>
           </div>
@@ -43,7 +56,7 @@ export function TemplateCard({ template }: { template: TemplateMeta }) {
           <p className="text-xs text-muted-foreground line-clamp-2">{template.description}</p>
         )}
         <p className="text-xs text-muted-foreground mt-2">
-          Used {template.use_count} times
+          Used {template.use_count} {template.use_count === 1 ? 'time' : 'times'}
         </p>
       </CardContent>
       <CardFooter>

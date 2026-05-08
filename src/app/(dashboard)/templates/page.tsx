@@ -3,6 +3,8 @@ import { TopNav } from '@/components/dashboard/TopNav';
 import { TemplateCard } from '@/components/templates/TemplateCard';
 import { DOCUMENT_TYPE_LABELS } from '@/types/document.types';
 import type { DocumentType, TemplateMeta } from '@/types/document.types';
+import { BookTemplate } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 const FILTER_TYPES: DocumentType[] = [
   'invoice', 'contract', 'nda', 'proposal', 'quotation',
@@ -37,12 +39,16 @@ export default async function TemplatesPage({ searchParams }: Props) {
     <>
       <TopNav title="Templates" />
       <div className="p-6 space-y-6">
+        {/* Filter pills */}
         <div className="flex gap-2 flex-wrap">
           <a
             href="/templates"
-            className={`px-3 py-1.5 text-sm rounded-full border transition-colors ${
-              !type ? 'bg-primary text-primary-foreground' : 'hover:bg-muted'
-            }`}
+            className={cn(
+              'px-3.5 py-1.5 text-sm rounded-full font-medium transition-colors',
+              !type
+                ? 'bg-primary text-primary-foreground'
+                : 'border border-border text-muted-foreground hover:bg-accent hover:text-accent-foreground'
+            )}
           >
             All
           </a>
@@ -50,9 +56,12 @@ export default async function TemplatesPage({ searchParams }: Props) {
             <a
               key={t}
               href={`/templates?type=${t}`}
-              className={`px-3 py-1.5 text-sm rounded-full border transition-colors ${
-                type === t ? 'bg-primary text-primary-foreground' : 'hover:bg-muted'
-              }`}
+              className={cn(
+                'px-3.5 py-1.5 text-sm rounded-full font-medium transition-colors',
+                type === t
+                  ? 'bg-primary text-primary-foreground'
+                  : 'border border-border text-muted-foreground hover:bg-accent hover:text-accent-foreground'
+              )}
             >
               {DOCUMENT_TYPE_LABELS[t]}
             </a>
@@ -66,8 +75,14 @@ export default async function TemplatesPage({ searchParams }: Props) {
             ))}
           </div>
         ) : (
-          <div className="text-center py-16 text-muted-foreground">
-            No templates yet. Create a document and save it as a template!
+          <div className="flex flex-col items-center justify-center border-2 border-dashed border-border/60 rounded-2xl py-20 text-center bg-muted/20">
+            <div className="w-14 h-14 rounded-2xl bg-primary/8 flex items-center justify-center mb-5">
+              <BookTemplate className="h-7 w-7 text-primary/60" />
+            </div>
+            <p className="text-muted-foreground font-medium mb-1">No templates yet</p>
+            <p className="text-sm text-muted-foreground/70">
+              Create a document and save it as a template
+            </p>
           </div>
         )}
       </div>

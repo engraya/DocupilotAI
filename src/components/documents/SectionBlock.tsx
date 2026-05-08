@@ -46,19 +46,19 @@ export function SectionBlock({ section, onChange }: SectionBlockProps) {
 
   return (
     <div
-      className="border rounded-lg p-4 space-y-3 transition-shadow hover:shadow-sm"
+      className="border rounded-xl p-5 space-y-3 transition-all hover:shadow-sm hover:border-primary/25 group"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       <input
-        className="w-full font-semibold text-base bg-transparent border-none outline-none focus:outline-none"
+        className="w-full font-semibold text-base bg-transparent border-none outline-none focus:outline-none text-foreground placeholder:text-muted-foreground/50"
         value={section.title}
         onChange={(e) => handleTitleChange(e.target.value)}
         placeholder="Section title"
       />
 
       <textarea
-        className="w-full text-sm text-muted-foreground bg-transparent border-none outline-none resize-none focus:outline-none min-h-[80px]"
+        className="w-full text-sm text-muted-foreground bg-transparent border-none outline-none resize-none focus:outline-none min-h-[80px] leading-relaxed"
         value={section.content}
         onChange={(e) => {
           handleContentChange(e.target.value);
@@ -70,7 +70,7 @@ export function SectionBlock({ section, onChange }: SectionBlockProps) {
       />
 
       {(hovered || canUndo) && (
-        <div className="border-t pt-2">
+        <div className="border-t border-dashed border-border/60 pt-2.5">
           <AIEditToolbar
             sectionContent={section.content}
             onUpdate={handleAIUpdate}
