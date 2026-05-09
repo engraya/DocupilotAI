@@ -14,7 +14,7 @@ export async function generateDocument(
   let text: string;
   try {
     const response = await genai.models.generateContent({
-      model: 'gemini-2.0-flash',
+      model: 'gemini-3-flash-preview',
       contents: prompt,
       config: {
         systemInstruction: SYSTEM_INSTRUCTION,
@@ -38,7 +38,7 @@ export async function editSection(
   let text: string;
   try {
     const response = await genai.models.generateContent({
-      model: 'gemini-2.0-flash',
+      model: 'gemini-3-flash-preview',
       contents: prompt,
       config: {
         systemInstruction: 'You are a professional document editor. Return ONLY a valid JSON object with a "content" field containing the edited text. No markdown, no code blocks.',
