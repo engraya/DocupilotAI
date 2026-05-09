@@ -102,7 +102,9 @@ export function Sidebar({ profile }: { profile: UserProfile | null }) {
   return (
     <aside className="hidden lg:flex w-64 border-r bg-sidebar flex-col h-screen sticky top-0 shrink-0">
       <div className="flex items-center px-5 py-4 border-b border-sidebar-border">
-        <Logo />
+        <Link href="/">
+          <Logo />
+        </Link>
       </div>
 
       <NavLinks pathname={pathname} />
@@ -135,7 +137,9 @@ export function MobileSidebarTrigger({ profile }: { profile: UserProfile | null 
       <SheetContent side="left" className="p-0 w-72 bg-sidebar flex flex-col gap-0">
         <SheetHeader className="flex items-start px-5 py-4 border-b border-sidebar-border">
           <SheetTitle className="sr-only">Navigation</SheetTitle>
-          <Logo />
+          <Link href="/">
+            <Logo />
+          </Link>
         </SheetHeader>
 
         <NavLinks pathname={pathname} />

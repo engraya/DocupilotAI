@@ -8,9 +8,13 @@ import type { UserProfile } from '@/hooks/useUser';
 export function TopNav({
   title,
   profile,
+  parentLabel = 'DocuPilot',
+  parentHref = '/dashboard',
 }: {
   title: string;
   profile?: UserProfile | null;
+  parentLabel?: string;
+  parentHref?: string;
 }) {
   return (
     <header className="border-b bg-background/95 backdrop-blur-sm px-4 lg:px-6 py-3 flex items-center gap-3 sticky top-0 z-10">
@@ -19,7 +23,12 @@ export function TopNav({
           <MobileSidebarTrigger profile={profile ?? null} />
         </div>
         <div className="flex items-center gap-2 text-sm">
-          <span className="text-muted-foreground hidden sm:block">DocuPilot</span>
+          <Link
+            href={parentHref}
+            className="text-muted-foreground hidden sm:block hover:text-foreground transition-colors"
+          >
+            {parentLabel}
+          </Link>
           <span className="text-muted-foreground hidden sm:block">/</span>
           <span className="font-semibold text-foreground">{title}</span>
         </div>

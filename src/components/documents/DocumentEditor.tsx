@@ -1,10 +1,13 @@
 'use client';
 
 import { useState, useCallback, useRef, useEffect } from 'react';
+import Link from 'next/link';
+import { ChevronLeft } from 'lucide-react';
 import { SectionBlock } from './SectionBlock';
 import { ExportMenu } from './ExportMenu';
 import { ShareDialog } from './ShareDialog';
 import { SaveAsTemplateDialog } from '@/components/templates/SaveAsTemplateDialog';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { Badge } from '@/components/ui/badge';
 import type { DocumentSection, DocumentMeta } from '@/types/document.types';
 import { DOCUMENT_TYPE_LABELS } from '@/types/document.types';
@@ -48,8 +51,16 @@ export function DocumentEditor({ document }: { document: DocumentMeta }) {
     <div className="flex flex-col h-full">
       {/* Toolbar */}
       <div className="border-b bg-background/95 backdrop-blur-sm px-5 py-3.5 flex items-center gap-4 sticky top-0 z-10">
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2.5 flex-wrap">
+        <div className="flex-1 min-w-0 flex items-center gap-3">
+          <Link
+            href="/documents"
+            className="flex items-center gap-1 text-muted-foreground hover:text-foreground text-sm transition-colors shrink-0"
+          >
+            <ChevronLeft className="h-4 w-4" />
+            <span className="hidden sm:inline">Documents</span>
+          </Link>
+          <span className="text-muted-foreground text-sm hidden sm:inline">/</span>
+          <div className="flex items-center gap-2.5 flex-wrap min-w-0">
             <h1 className="font-semibold text-sm truncate">{document.title}</h1>
             <Badge variant="outline" className="text-xs shrink-0 bg-muted/60">
               {DOCUMENT_TYPE_LABELS[document.type]}
@@ -67,6 +78,8 @@ export function DocumentEditor({ document }: { document: DocumentMeta }) {
               <span className="text-xs text-muted-foreground hidden sm:inline">Saving…</span>
             </div>
           )}
+          <ThemeToggle />
+          <div className="w-px h-4 bg-border mx-0.5" />
           <SaveAsTemplateDialog document={document} />
           <ShareDialog documentId={document.id} />
           <div className="w-px h-4 bg-border mx-0.5" />

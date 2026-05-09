@@ -27,7 +27,7 @@ export default async function TemplatePage({ params }: Props) {
 
   return (
     <>
-      <TopNav title="Template Preview" />
+      <TopNav title="Template Preview" parentLabel="Templates" parentHref="/templates" />
       <div className="p-6 max-w-4xl mx-auto space-y-6">
         <div className="flex items-start justify-between gap-4">
           <div className="space-y-1">

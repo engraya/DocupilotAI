@@ -27,7 +27,7 @@ export default async function BillingPage() {
 
   return (
     <>
-      <TopNav title="Billing" />
+      <TopNav title="Billing" parentLabel="Settings" parentHref="/settings" />
       <div className="p-6 max-w-3xl space-y-8">
         <section>
           <h2 className="text-base font-semibold mb-4">Current Plan</h2>

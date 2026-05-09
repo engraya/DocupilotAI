@@ -25,6 +25,13 @@ export const metadata: Metadata = {
   title: 'DocuPilot AI — AI-Powered Document Generation',
   description:
     'Generate professional contracts, invoices, NDAs, proposals, and more in seconds with AI. The smart document automation platform for freelancers, startups, and businesses.',
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
   openGraph: {
     title: 'DocuPilot AI',
     description: 'AI-powered professional document generation',
